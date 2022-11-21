@@ -16,4 +16,10 @@ public class Person {
         this.fullName = fullName;
     }
 
+    @Override
+    public String toString() {
+
+        return getFullName();
+    }
+
 }

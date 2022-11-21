@@ -6,26 +6,18 @@ public class Record {
 
     private Person person;
     private ArrayList<Phone> phones = new ArrayList<>();
+    private ArrayList<Email> emails = new ArrayList<>();
 
-    public Record(Person person, ArrayList<Phone> phones) {
+    public Record(Person person, ArrayList<Phone> phones, ArrayList<Email> emails) {
         this.person = person;
         this.phones.addAll(phones);
+        this.emails.addAll(emails);
     }
 
-    public Record(Person person, Phone phone) {
+    public Record(Person person, Phone phone, Email email) {
         this.person = person;
         this.phones.add(phone);
-    }
-
-    public ArrayList<String> recordToFile() {
-        ArrayList<String> output = new ArrayList<>();
-        output.add(this.person.getFullName());
-        for (Phone phone : this.phones) {
-            output.add(phone.getPhoneNumber());
-
-        }
-        return output;
-
+        this.emails.add(email);
     }
 
     public Person getPerson() {
@@ -42,5 +34,19 @@ public class Record {
 
     public void setPhones(ArrayList<Phone> phones) {
         this.phones = phones;
+    }
+
+    public ArrayList<Email> getEmail() {
+        return emails;
+    }
+
+    public void setEmail(ArrayList<Email> emails) {
+        this.emails = emails;
+    }
+
+    @Override
+    public String toString() {
+
+        return " Person: " + getPerson() + " phone: " + getPhones() + "Email: " + getEmail();
     }
 }

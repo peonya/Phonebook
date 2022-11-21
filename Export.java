@@ -1,35 +1,29 @@
 package Phonebook;
 
+import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 
 public class Export {
 
-    private Phonebook phonebook;
+    public void save(ArrayList<Record> records) throws IOException {
 
-    public Export(Phonebook phonebook) {
-        this.phonebook = phonebook;
+        FileWriter csvWriter = new FileWriter("newPhonebook.csv");
+        csvWriter.append("Full name");
+        csvWriter.append("       | ");
+        csvWriter.append("Telefon number");
+        csvWriter.append("        | ");
+        csvWriter.append("Email address");
+        csvWriter.append("        | ");
+        csvWriter.append("\n");
 
-    }
+        for (Record data : records) {
+            csvWriter.append(data.getPerson() + "," + data.getPhones() + "," + data.getEmail() + "\n");
 
-    public void save() {
-        ArrayList<String> output = new ArrayList<>();
-
-        for (Record record : phonebook.getPhoneBook()) {
-            output.addAll(record.recordToFile());
-
+            csvWriter.append("\n");
         }
 
-        try {
-            Files.write(Paths.get("Phonebook\\export.txt"), output, StandardOpenOption.CREATE);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        csvWriter.close();
 
     }
-
 }
