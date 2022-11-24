@@ -2,7 +2,7 @@ package Phonebook;
 
 import java.util.Scanner;
 
-public class view {
+public class view implements SearchbyName, SearchbyPhone {
 
     public void menu() {
 
